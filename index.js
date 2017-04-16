@@ -22,7 +22,7 @@
  * alt="npm version" height="18">
  * </a>
  *
- * Sham for Reflect.getOwnPropertyDescriptor.
+ * Sham for ES6 Object.getOwnPropertyDescriptor.
  *
  * Requires ES3 or above.
  *
