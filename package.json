@@ -1,0 +1,62 @@
+{
+  "name": "object-get-own-property-descriptor-x",
+  "version": "1.0.0",
+  "description": "Sham for Reflect.defineProperty",
+  "homepage": "https://github.com/Xotic750/object-get-own-property-descriptor-x",
+  "author": {
+    "name": "Graham Fairweather",
+    "email": "xotic750@gmail.com"
+  },
+  "copyright": "Copyright (c) 2017",
+  "keywords": [
+    "reflectDefineProperty",
+    "module",
+    "javascript",
+    "nodejs",
+    "browser"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": "*"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xotic750/object-get-own-property-descriptor-x.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Xotic750/object-get-own-property-descriptor-x/issues"
+  },
+  "dependencies": {
+    "has-own-property-x": "^1.2.0",
+    "to-object-x": "^1.2.1"
+  },
+  "devDependencies": {
+    "@ljharb/eslint-config": "^11.0.0",
+    "browserify": "^14.3.0",
+    "browserify-derequire": "^0.9.4",
+    "es5-shim": "^4.5.9",
+    "es6-shim": "^0.35.3",
+    "es7-shim": "^6.0.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.2.0",
+    "jasmine-node": "^1.14.5",
+    "jsdoc-to-markdown": "^3.0.0",
+    "json3": "^3.3.2",
+    "make-jasmine-spec-runner-html": "^1.1.0",
+    "nsp": "^2.6.3",
+    "replace-x": "^1.1.1",
+    "uglify-js": "^2.8.22"
+  },
+  "scripts": {
+    "build": "npm run build:setver && npm run security && npm run eslint && npm run browserify && npm run uglify && npm run docs && npm run build:jasmine && npm test",
+    "build:jasmine": "make-jasmine-spec-runner-html",
+    "build:setver": "PKG_VER=$(node -p -e \"require('./package.json').version\") && replace-x \" @version .*\" \" @version ${PKG_VER}\" index.js",
+    "docs": "jsdoc2md --name-format --example-lang js index.js > README.md",
+    "eslint": "eslint *.js tests/spec/*.js",
+    "security": "nsp check",
+    "test": "jasmine-node --matchall tests/spec/",
+    "browserify": "browserify -p browserify-derequire -e index.js -o lib/object-get-own-property-descriptor-x.js -u 'crypto' -s returnExports",
+    "uglify": "uglifyjs lib/object-get-own-property-descriptor-x.js -o lib/object-get-own-property-descriptor-x.min.js --support-ie8 --compress --keep-fnames --mangle --beautify ascii_only=true,beautify=false --source-map lib/object-get-own-property-descriptor-x.map"
+  }
+}
