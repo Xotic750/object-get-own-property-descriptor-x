@@ -1,6 +1,6 @@
 /**
  * @file Sham for ES6 Object.getOwnPropertyDescriptor
- * @version 2.0.0
+ * @version 3.0.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -9,47 +9,76 @@
 
 'use strict';
 
-var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var toObject = require('to-object-x');
+var toPropertyKey = require('to-property-key-x');
+var nativeGOPD = typeof Object.getOwnPropertyDescriptor === 'function' && Object.getOwnPropertyDescriptor;
 var getOPDFallback;
 
 // ES5 15.2.3.3
 // http://es5.github.com/#x15.2.3.3
 
-var doesGOPDWork = function (object) {
+var isFalsey = function _isFalsy(value) {
+  return Boolean(value) === false;
+};
+
+var doesGOPDWork = function (object, prop) {
   try {
-    object.sentinel = 0;
-    return $getOwnPropertyDescriptor(object, 'sentinel').value === 0;
+    object[toPropertyKey(prop)] = 0;
+    return nativeGOPD(object, prop).value === 0;
   } catch (ignore) {
     return false;
   }
 };
 
 // check whether getOwnPropertyDescriptor works if it's given. Otherwise, shim partially.
-if ($getOwnPropertyDescriptor) {
-  var getOPDWorksOnObject = doesGOPDWork({});
-  var getOPDWorksOnDom = typeof document === 'undefined' || doesGOPDWork(document.createElement('div'));
-  if (getOPDWorksOnDom === false || getOPDWorksOnObject === false) {
-    getOPDFallback = $getOwnPropertyDescriptor;
+var $getOwnPropertyDescriptor;
+if (nativeGOPD) {
+  var getOPDWorksOnDom = typeof document === 'undefined' || doesGOPDWork(document.createElement('div'), 'sentinel');
+  if (getOPDWorksOnDom) {
+    var getOPDWorksOnObject = doesGOPDWork({}, 'sentinel');
+    if (getOPDWorksOnObject) {
+      var worksWithPrim;
+      try {
+        nativeGOPD(42, 'name');
+        worksWithPrim = true;
+      } catch (ignore) {}
+
+      var worksWithObjSym = require('has-symbol-support-x') && doesGOPDWork({}, Object(Symbol('')));
+      if (worksWithObjSym) {
+        // eslint-disable-next-line max-depth
+        if (worksWithPrim) {
+          $getOwnPropertyDescriptor = nativeGOPD;
+        } else {
+          $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
+            return nativeGOPD(toObject(object), property);
+          };
+        }
+      } else if (worksWithPrim) {
+        $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
+          return nativeGOPD(object, toPropertyKey(property));
+        };
+      } else {
+        $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
+          return nativeGOPD(toObject(object), toPropertyKey(property));
+        };
+      }
+    } else {
+      getOPDFallback = nativeGOPD;
+    }
   }
 }
 
-var toObject;
-if ($getOwnPropertyDescriptor && Boolean(getOPDFallback) === false) {
-  try {
-    $getOwnPropertyDescriptor(42, 'name');
-  } catch (err) {
-    toObject = require('to-object-x');
-    $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
-      return $getOwnPropertyDescriptor(toObject(object), property);
-    };
-  }
-} else if (Boolean($getOwnPropertyDescriptor) === false || getOPDFallback) {
-  toObject = require('to-object-x');
+if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback) {
   var owns = require('has-own-property-x');
-  var prototypeOfObject = Object.prototype;
+  var isPrimitive = require('is-primitive');
+  var isString = require('is-string');
+  var isDigits = function _isDigits(key) {
+    return (/^\d+$/).test(key);
+  };
 
+  var prototypeOfObject = Object.prototype;
   var propertyIsEnumerable = prototypeOfObject.propertyIsEnumerable;
-  var isEnumerable = function (object, property) {
+  var isEnumerable = function _isEnumerable(object, property) {
     return propertyIsEnumerable.call(object, property);
   };
 
@@ -73,29 +102,30 @@ if ($getOwnPropertyDescriptor && Boolean(getOPDFallback) === false) {
 
   $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
     var obj = toObject(object);
+    var propKey = toPropertyKey(property);
 
-    // make a valiant attempt to use the real getOwnPropertyDescriptor
-    // for I8's DOM elements.
+    // make a valiant attempt to use the real getOwnPropertyDescriptor for I8's DOM elements.
     if (getOPDFallback) {
       try {
-        return getOPDFallback.call(Object, obj, property);
+        return getOPDFallback.call(Object, obj, propKey);
       } catch (ignore) {
         // try the shim if the real one doesn't work
       }
     }
 
-    var descriptor;
+    var isStringIndex = isString(obj) && isDigits(propKey) && propKey < obj.length;
 
+    var descriptor;
     // If object does not owns property return undefined immediately.
-    if (owns(obj, property) === false) {
+    if (isStringIndex === false && owns(obj, propKey) === false) {
       return descriptor;
     }
 
     // If object has a property then it's for sure `configurable`, and
     // probably `enumerable`. Detect enumerability though.
     descriptor = {
-      configurable: true,
-      enumerable: isEnumerable(obj, property)
+      configurable: isPrimitive(object) === false && isStringIndex === false,
+      enumerable: isEnumerable(obj, propKey)
     };
 
     // If JS engine supports accessor properties then property may be a
@@ -114,11 +144,11 @@ if ($getOwnPropertyDescriptor && Boolean(getOPDFallback) === false) {
       // or any other Object.prototype accessor
       if (notPrototypeOfObject) {
         // eslint-disable-next-line no-proto
-        object.__proto__ = prototypeOfObject;
+        obj.__proto__ = prototypeOfObject;
       }
 
-      var getter = lookupGetter(obj, property);
-      var setter = lookupSetter(obj, property);
+      var getter = lookupGetter(obj, propKey);
+      var setter = lookupSetter(obj, propKey);
 
       if (notPrototypeOfObject) {
         // Once we have getter and setter we can put values back.
@@ -143,8 +173,14 @@ if ($getOwnPropertyDescriptor && Boolean(getOPDFallback) === false) {
 
     // If we got this far we know that object has an own property that is
     // not an accessor so we set it as a value and return descriptor.
-    descriptor.value = obj[property];
-    descriptor.writable = true;
+    if (isStringIndex) {
+      descriptor.value = obj.charAt(propKey);
+      descriptor.writable = false;
+    } else {
+      descriptor.value = obj[propKey];
+      descriptor.writable = true;
+    }
+
     return descriptor;
   };
 }

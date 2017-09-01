@@ -78,6 +78,22 @@ describe('getOwnPropertyDescriptor', function () {
       writable: false
     };
 
-    expect(getOwnPropertyDescriptor('foo', 0)).toEqual(expected);
+    var str = 'foo';
+    expect(getOwnPropertyDescriptor(str, 0)).toEqual(expected);
+    expect(getOwnPropertyDescriptor(str, 3)).toBe(void 0);
+
+    var strObj = Object(str);
+    strObj[4] = 1;
+
+    var expectedx = {
+      configurable: true,
+      enumerable: true,
+      value: 1,
+      writable: true
+    };
+
+    expect(getOwnPropertyDescriptor(strObj, 0)).toEqual(expected);
+    expect(getOwnPropertyDescriptor(strObj, 3)).toBe(void 0);
+    expect(getOwnPropertyDescriptor(strObj, 4)).toEqual(expectedx);
   });
 });
