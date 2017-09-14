@@ -1,6 +1,6 @@
 /**
  * @file Sham for ES6 Object.getOwnPropertyDescriptor
- * @version 3.1.0
+ * @version 3.2.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}

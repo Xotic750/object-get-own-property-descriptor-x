@@ -1,7 +1,4 @@
 sudo: false
-env:
-  global:
-    - NODE_ENV=production
 language: node_js
 branches:
   only:
