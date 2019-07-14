@@ -49,10 +49,10 @@
     "url": "https://github.com/Xotic750/object-get-own-property-descriptor-x/issues"
   },
   "dependencies": {
-    "attempt-x": "^2.0.2",
+    "attempt-x": "^2.0.3",
     "has-own-property-x": "^3.2.0",
-    "has-symbol-support-x": "^2.0.2",
-    "is-falsey-x": "^2.0.4",
+    "has-symbol-support-x": "^2.0.3",
+    "is-falsey-x": "^2.0.5",
     "is-index-x": "^1.1.0",
     "is-primitive": "^3.0.1",
     "is-string": "^1.0.4",

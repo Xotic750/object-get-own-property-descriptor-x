@@ -1,6 +1,5 @@
 /**
  * @file Manages the root configuration settings for webpack.
- * @module Webpack/root/configuration.
  * @see {@link https://webpack.js.org/} For further information.
  */
 
