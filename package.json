@@ -57,7 +57,7 @@
     "is-primitive": "^3.0.1",
     "is-string": "^1.0.4",
     "property-is-enumerable-x": "^1.1.0",
-    "to-object-x": "^1.5.0",
+    "to-object-x": "^2.0.0",
     "to-property-key-x": "^2.0.2"
   },
   "devDependencies": {
