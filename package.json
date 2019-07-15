@@ -49,16 +49,16 @@
     "url": "https://github.com/Xotic750/object-get-own-property-descriptor-x/issues"
   },
   "dependencies": {
-    "attempt-x": "^2.0.3",
+    "attempt-x": "^2.0.4",
     "has-own-property-x": "^3.2.0",
-    "has-symbol-support-x": "^2.0.3",
-    "is-falsey-x": "^2.0.5",
+    "has-symbol-support-x": "^2.0.4",
+    "is-falsey-x": "^2.0.6",
     "is-index-x": "^1.1.0",
     "is-primitive": "^3.0.1",
     "is-string": "^1.0.4",
-    "property-is-enumerable-x": "^1.1.0",
-    "to-object-x": "^2.0.0",
-    "to-property-key-x": "^2.0.2"
+    "property-is-enumerable-x": "^2.0.0",
+    "to-object-x": "^2.0.1",
+    "to-property-key-x": "^3.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
