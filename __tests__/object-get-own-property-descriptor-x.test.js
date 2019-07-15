@@ -1,36 +1,16 @@
-let getOwnPropertyDescriptor;
-
-if (typeof module === 'object' && module.exports) {
-  require('es5-shim');
-  require('es5-shim/es5-sham');
-
-  if (typeof JSON === 'undefined') {
-    JSON = {};
-  }
-
-  require('json3').runInContext(null, JSON);
-  require('es6-shim');
-  const es7 = require('es7-shim');
-  Object.keys(es7).forEach(function(key) {
-    const obj = es7[key];
-
-    if (typeof obj.shim === 'function') {
-      obj.shim();
-    }
-  });
-  getOwnPropertyDescriptor = require('../../index.js');
-} else {
-  getOwnPropertyDescriptor = returnExports;
-}
+import getOwnPropertyDescriptor from '../src/object-get-own-property-descriptor-x';
 
 describe('getOwnPropertyDescriptor', function() {
   it('should return undefined because the object does not own the property', function() {
+    expect.assertions(1);
     const descr = getOwnPropertyDescriptor({}, 'name');
 
+    /* eslint-disable-next-line no-void */
     expect(descr).toBe(void 0);
   });
 
   it('should return a data descriptor', function() {
+    expect.assertions(1);
     const descr = getOwnPropertyDescriptor({name: 'Testing'}, 'name');
     const expected = {
       configurable: true,
@@ -42,13 +22,16 @@ describe('getOwnPropertyDescriptor', function() {
     expect(descr).toStrictEqual(expected);
   });
 
-  it('should return undefined because the object does not own the property', function() {
+  it('should return undefined because the object does not own the property, Object.create', function() {
+    expect.assertions(1);
     const descr = getOwnPropertyDescriptor(Object.create({name: 'Testing'}, {}), 'name');
 
+    /* eslint-disable-next-line no-void */
     expect(descr).toBe(void 0);
   });
 
-  it('should return a data descriptor', function() {
+  it('should return a data descriptor, Object.create', function() {
+    expect.assertions(1);
     const expected = {
       configurable: true,
       enumerable: true,
@@ -63,16 +46,19 @@ describe('getOwnPropertyDescriptor', function() {
   });
 
   it('should throw error for `null` or `undefined`', function() {
+    expect.assertions(2);
     expect(function() {
+      /* eslint-disable-next-line no-void */
       getOwnPropertyDescriptor(void 0, 'any');
-    }).toThrow();
+    }).toThrowErrorMatchingSnapshot();
 
     expect(function() {
       getOwnPropertyDescriptor(null, 'any');
-    }).toThrow();
+    }).toThrowErrorMatchingSnapshot();
   });
 
   it('should work with non object', function() {
+    expect.assertions(5);
     const expected = {
       configurable: false,
       enumerable: true,
@@ -82,6 +68,7 @@ describe('getOwnPropertyDescriptor', function() {
 
     const str = 'foo';
     expect(getOwnPropertyDescriptor(str, 0)).toStrictEqual(expected);
+    /* eslint-disable-next-line no-void */
     expect(getOwnPropertyDescriptor(str, 3)).toBe(void 0);
 
     const strObj = Object(str);
@@ -95,6 +82,7 @@ describe('getOwnPropertyDescriptor', function() {
     };
 
     expect(getOwnPropertyDescriptor(strObj, 0)).toStrictEqual(expected);
+    /* eslint-disable-next-line no-void */
     expect(getOwnPropertyDescriptor(strObj, 3)).toBe(void 0);
     expect(getOwnPropertyDescriptor(strObj, 4)).toStrictEqual(expectedx);
   });

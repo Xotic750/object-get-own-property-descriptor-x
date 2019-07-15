@@ -21,33 +21,32 @@
 <a name="module_object-get-own-property-descriptor-x"></a>
 
 ## object-get-own-property-descriptor-x
+
 Sham for ES6 Object.getOwnPropertyDescriptor
 
-**Version**: 3.2.0  
-**Author**: Xotic750 <Xotic750@gmail.com>  
-**License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
-**Copyright**: Xotic750  
 <a name="exp_module_object-get-own-property-descriptor-x--module.exports"></a>
 
 ### `module.exports` ⇒ <code>Object</code> ⏏
+
 This method returns a property descriptor for an own property (that is,
 one directly present on an object and not in the object's prototype chain)
 of a given object.
 
 **Kind**: Exported member  
-**Returns**: <code>Object</code> - A property descriptor of the given property if it exists on the object, undefined otherwise.  
+**Returns**: <code>Object</code> - A property descriptor of the given property if it exists on the object, undefined otherwise.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>\*</code> | The object in which to look for the property. |
+| Param    | Type            | Description                                                    |
+| -------- | --------------- | -------------------------------------------------------------- |
+| object   | <code>\*</code> | The object in which to look for the property.                  |
 | property | <code>\*</code> | The name of the property whose description is to be retrieved. |
 
-**Example**  
+**Example**
+
 ```js
-var getOwnPropertyDescriptor = require('object-get-own-property-descriptor-x');
-var obj = { bar: 42 };
-var d = getOwnPropertyDescriptor(o, 'bar');
-// d is {
+import getOwnPropertyDescriptor from 'object-get-own-property-descriptor-x';
+const obj = {bar: 42};
+console.log(getOwnPropertyDescriptor(o, 'bar'));
+// {
 //   configurable: true,
 //   enumerable: true,
 //   value: 42,
