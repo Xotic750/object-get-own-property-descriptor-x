@@ -56,9 +56,9 @@
     "is-index-x": "^1.1.0",
     "is-primitive": "^3.0.1",
     "is-string": "^1.0.4",
-    "property-is-enumerable-x": "^2.0.0",
+    "property-is-enumerable-x": "^2.0.1",
     "to-object-x": "^2.0.1",
-    "to-property-key-x": "^3.0.1"
+    "to-property-key-x": "^3.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
