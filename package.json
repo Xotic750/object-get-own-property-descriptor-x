@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "attempt-x": "^2.0.4",
-    "has-own-property-x": "^3.2.0",
+    "has-own-property-x": "^4.0.0",
     "has-symbol-support-x": "^2.0.4",
     "is-falsey-x": "^2.0.6",
     "is-index-x": "^1.1.0",
