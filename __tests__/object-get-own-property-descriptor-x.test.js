@@ -5,7 +5,6 @@ describe('getOwnPropertyDescriptor', function() {
     expect.assertions(1);
     const descr = getOwnPropertyDescriptor({}, 'name');
 
-    /* eslint-disable-next-line no-void */
     expect(descr).toBe(void 0);
   });
 
@@ -26,7 +25,6 @@ describe('getOwnPropertyDescriptor', function() {
     expect.assertions(1);
     const descr = getOwnPropertyDescriptor(Object.create({name: 'Testing'}, {}), 'name');
 
-    /* eslint-disable-next-line no-void */
     expect(descr).toBe(void 0);
   });
 
@@ -48,7 +46,6 @@ describe('getOwnPropertyDescriptor', function() {
   it('should throw error for `null` or `undefined`', function() {
     expect.assertions(2);
     expect(function() {
-      /* eslint-disable-next-line no-void */
       getOwnPropertyDescriptor(void 0, 'any');
     }).toThrowErrorMatchingSnapshot();
 
@@ -68,7 +65,7 @@ describe('getOwnPropertyDescriptor', function() {
 
     const str = 'foo';
     expect(getOwnPropertyDescriptor(str, 0)).toStrictEqual(expected);
-    /* eslint-disable-next-line no-void */
+
     expect(getOwnPropertyDescriptor(str, 3)).toBe(void 0);
 
     const strObj = Object(str);
@@ -82,7 +79,7 @@ describe('getOwnPropertyDescriptor', function() {
     };
 
     expect(getOwnPropertyDescriptor(strObj, 0)).toStrictEqual(expected);
-    /* eslint-disable-next-line no-void */
+
     expect(getOwnPropertyDescriptor(strObj, 3)).toBe(void 0);
     expect(getOwnPropertyDescriptor(strObj, 4)).toStrictEqual(expectedx);
   });
