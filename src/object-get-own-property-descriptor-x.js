@@ -1,6 +1,5 @@
 import toObject from 'to-object-x';
 import toPropertyKey from 'to-property-key-x';
-import isFalsey from 'is-falsey-x';
 import attempt from 'attempt-x';
 import hasSymbolSupport from 'has-symbol-support-x';
 import owns from 'has-own-property-x';
@@ -11,6 +10,8 @@ import propertyIsEnumerable from 'property-is-enumerable-x';
 
 /** @type {ObjectConstructor} */
 const castObject = {}.constructor;
+/** @type {BooleanConstructor} */
+const castBoolean = true.constructor;
 const nativeGOPD = typeof castObject.getOwnPropertyDescriptor === 'function' && castObject.getOwnPropertyDescriptor;
 let getOPDFallback1;
 let getOPDFallback2;
@@ -79,7 +80,7 @@ if (nativeGOPD) {
   }
 }
 
-if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
+if (castBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDFallback2) {
   const prototypeOfObject = castObject.prototype;
 
   // If JS engine supports accessors creating shortcuts.

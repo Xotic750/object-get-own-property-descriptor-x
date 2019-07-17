@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-17T17:54:17.323Z",
+  "date": "2019-07-17T19:17:44.353Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
-  "hash": "40ca3e5c0410dc35ef9c",
+  "hash": "5afd59dd403e9f1d85a3",
   "license": "MIT",
-  "version": "4.0.5"
+  "version": "4.0.6"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -120,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 var toStr = Object.prototype.toString;
-var hasSymbols = __webpack_require__(5)();
+var hasSymbols = __webpack_require__(4)();
 
 if (hasSymbols) {
 	var symToStr = Symbol.prototype.toString;
@@ -193,15 +193,6 @@ module.exports = function isPrimitive(val) {
 
 "use strict";
 
-module.exports = 9007199254740991;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 var getDay = Date.prototype.getDay;
 var tryDateObject = function tryDateObject(value) {
@@ -224,7 +215,7 @@ module.exports = function isDateObject(value) {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -251,14 +242,14 @@ module.exports = function isString(value) {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
 var origSymbol = global.Symbol;
-var hasSymbolSham = __webpack_require__(7);
+var hasSymbolSham = __webpack_require__(6);
 
 module.exports = function hasNativeSymbols() {
 	if (typeof origSymbol !== 'function') { return false; }
@@ -269,10 +260,10 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(5)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 var g;
@@ -298,7 +289,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -347,7 +338,7 @@ module.exports = function hasSymbols() {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -474,7 +465,7 @@ var is_primitive = __webpack_require__(1);
 var is_primitive_default = /*#__PURE__*/__webpack_require__.n(is_primitive);
 
 // EXTERNAL MODULE: ./node_modules/is-date-object/index.js
-var is_date_object = __webpack_require__(3);
+var is_date_object = __webpack_require__(2);
 var is_date_object_default = /*#__PURE__*/__webpack_require__.n(is_date_object);
 
 // CONCATENATED MODULE: ./node_modules/to-boolean-x/dist/to-boolean-x.esm.js
@@ -1317,22 +1308,6 @@ var to_property_key_x_esm_toPropertyKey = function toPropertyKey(argument) {
 /* harmony default export */ var to_property_key_x_esm = (to_property_key_x_esm_toPropertyKey);
 
 
-// CONCATENATED MODULE: ./node_modules/is-falsey-x/dist/is-falsey-x.esm.js
-
-/**
- * This method tests if a given value is falsey.
- *
- * @param {*} [value] - The value to test.
- * @returns {boolean} `true` if the value is falsey: otherwise `false`.
- */
-
-var is_falsey_x_esm_isFalsey = function isFalsey(value) {
-  return !to_boolean_x_esm(value);
-};
-
-/* harmony default export */ var is_falsey_x_esm = (is_falsey_x_esm_isFalsey);
-
-
 // CONCATENATED MODULE: ./node_modules/has-own-property-x/dist/has-own-property-x.esm.js
 
 
@@ -1356,7 +1331,7 @@ var has_own_property_x_esm_hasOwnProperty = function hasOwnProperty(object, prop
 
 
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
-var is_string = __webpack_require__(4);
+var is_string = __webpack_require__(3);
 var is_string_default = /*#__PURE__*/__webpack_require__.n(is_string);
 
 // CONCATENATED MODULE: ./node_modules/to-string-symbols-supported-x/dist/to-string-symbols-supported-x.esm.js
@@ -1780,16 +1755,12 @@ var math_clamp_x_esm_clamp = function clamp(value) {
 /* harmony default export */ var math_clamp_x_esm = (math_clamp_x_esm_clamp);
 
 
-// EXTERNAL MODULE: ./node_modules/max-safe-integer/index.js
-var max_safe_integer = __webpack_require__(2);
-var max_safe_integer_default = /*#__PURE__*/__webpack_require__.n(max_safe_integer);
-
 // CONCATENATED MODULE: ./node_modules/is-index-x/dist/is-index-x.esm.js
 
 
 
 
-
+var MAX_SAFE_INTEGER = 9007199254740991;
 var reIsUint = /^(?:0|[1-9]\d*)$/;
 var rxTest = reIsUint.test;
 /**
@@ -1814,10 +1785,10 @@ var is_index_x_esm_isIndex = function isIndex(value, length) {
   var number = to_number_x_esm(string);
 
   if (arguments.length > 1) {
-    return number < math_clamp_x_esm(to_integer_x_esm(length), max_safe_integer_default.a);
+    return number < math_clamp_x_esm(to_integer_x_esm(length), MAX_SAFE_INTEGER);
   }
 
-  return number < max_safe_integer_default.a;
+  return number < MAX_SAFE_INTEGER;
 };
 
 /* harmony default export */ var is_index_x_esm = (is_index_x_esm_isIndex);
@@ -1856,10 +1827,12 @@ var property_is_enumerable_x_esm_propertyIsEnumerable = function propertyIsEnume
 
 
 
-
 /** @type {ObjectConstructor} */
 
 var object_get_own_property_descriptor_x_esm_castObject = {}.constructor;
+/** @type {BooleanConstructor} */
+
+var object_get_own_property_descriptor_x_esm_castBoolean = true.constructor;
 var nativeGOPD = typeof object_get_own_property_descriptor_x_esm_castObject.getOwnPropertyDescriptor === 'function' && object_get_own_property_descriptor_x_esm_castObject.getOwnPropertyDescriptor;
 var getOPDFallback1;
 var getOPDFallback2; // ES5 15.2.3.3
@@ -1927,7 +1900,7 @@ if (nativeGOPD) {
   }
 }
 
-if (is_falsey_x_esm($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
+if (object_get_own_property_descriptor_x_esm_castBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDFallback2) {
   var prototypeOfObject = object_get_own_property_descriptor_x_esm_castObject.prototype; // If JS engine supports accessors creating shortcuts.
 
   var lookupGetter;
