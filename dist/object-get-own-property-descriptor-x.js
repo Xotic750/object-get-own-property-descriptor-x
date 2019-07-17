@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-16T21:51:24.942Z",
+  "date": "2019-07-17T17:54:17.323Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
-  "hash": "cb7cbf7f656e6596a34f",
+  "hash": "40ca3e5c0410dc35ef9c",
   "license": "MIT",
-  "version": "4.0.4"
+  "version": "4.0.5"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -360,10 +360,12 @@ __webpack_require__.r(__webpack_exports__);
  * @param {*} [value] - The value to check.
  * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
  */
-function isNil(value) {
+var isNil = function isNil(value) {
   /* eslint-disable-next-line lodash/prefer-is-nil */
   return value === null || typeof value === 'undefined';
-}
+};
+
+/* harmony default export */ var is_nil_x_esm = (isNil);
 
 
 // CONCATENATED MODULE: ./node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
@@ -377,13 +379,15 @@ function isNil(value) {
  * @returns {string} The `value`.
  */
 
-function requireObjectCoercible(value) {
-  if (isNil(value)) {
+var require_object_coercible_x_esm_requireObjectCoercible = function requireObjectCoercible(value) {
+  if (is_nil_x_esm(value)) {
     throw new TypeError("Cannot call method on ".concat(value));
   }
 
   return value;
-}
+};
+
+/* harmony default export */ var require_object_coercible_x_esm = (require_object_coercible_x_esm_requireObjectCoercible);
 
 
 // CONCATENATED MODULE: ./node_modules/to-object-x/dist/to-object-x.esm.js
@@ -398,9 +402,11 @@ var castObject = {}.constructor;
  * @returns {!object} The `value` converted to an object.
  */
 
-function toObject(value) {
-  return castObject(requireObjectCoercible(value));
-}
+var to_object_x_esm_toObject = function toObject(value) {
+  return castObject(require_object_coercible_x_esm(value));
+};
+
+/* harmony default export */ var to_object_x_esm = (to_object_x_esm_toObject);
 
 
 // CONCATENATED MODULE: ./node_modules/attempt-x/dist/attempt-x.esm.js
@@ -413,7 +419,7 @@ function toObject(value) {
  * @param {...*} [args] - The arguments to invoke the function with.
  * @returns {object} Returns an object of the result.
  */
-function attempt(fn) {
+var attempt = function attempt(fn) {
   try {
     for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
@@ -431,7 +437,9 @@ function attempt(fn) {
       value: e
     };
   }
-}
+};
+
+/* harmony default export */ var attempt_x_esm = (attempt);
 
 
 // EXTERNAL MODULE: ./node_modules/is-symbol/index.js
@@ -445,7 +453,7 @@ function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { t
 
 
 
-var hasSymbolSupport = attempt(function () {
+var hasSymbolSupport = attempt_x_esm(function () {
   _newArrowCheck(this, _this);
 
   /* eslint-disable-next-line compat/compat */
@@ -476,23 +484,11 @@ var is_date_object_default = /*#__PURE__*/__webpack_require__.n(is_date_object);
  * @param {*} [value] - The value to be converted.
  * @returns {boolean} 'true' if value is truthy; otherwise 'false'.
  */
-function toBoolean(value) {
+var toBoolean = function toBoolean(value) {
   return !!value;
-}
+};
 
-
-// CONCATENATED MODULE: ./node_modules/is-falsey-x/dist/is-falsey-x.esm.js
-
-/**
- * This method tests if a given value is falsey.
- *
- * @param {*} [value] - The value to test.
- * @returns {boolean} `true` if the value is falsey: otherwise `false`.
- */
-
-function isFalsey(value) {
-  return !toBoolean(value);
-}
+/* harmony default export */ var to_boolean_x_esm = (toBoolean);
 
 
 // CONCATENATED MODULE: ./node_modules/to-string-tag-x/dist/to-string-tag-x.esm.js
@@ -505,7 +501,7 @@ var nativeObjectToString = {}.toString;
  * @returns {string} The object type string.
  */
 
-function toStringTag(value) {
+var toStringTag = function toStringTag(value) {
   if (value === null) {
     return '[object Null]';
   }
@@ -515,7 +511,9 @@ function toStringTag(value) {
   }
 
   return nativeObjectToString.call(value);
-}
+};
+
+/* harmony default export */ var to_string_tag_x_esm = (toStringTag);
 
 
 // CONCATENATED MODULE: ./node_modules/has-to-string-tag-x/dist/has-to-string-tag-x.esm.js
@@ -545,13 +543,15 @@ var castString = ERROR_MESSAGE.constructor;
  * @returns {string} The converted value.
  */
 
-function ToString(value) {
+var to_string_x_esm_ToString = function ToString(value) {
   if (is_symbol_default()(value)) {
     throw new TypeError(ERROR_MESSAGE);
   }
 
   return castString(value);
-}
+};
+
+/* harmony default export */ var to_string_x_esm = (to_string_x_esm_ToString);
 
 
 // CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/dist/require-coercible-to-string-x.esm.js
@@ -565,9 +565,11 @@ function ToString(value) {
  * @returns {string} The value as a string.
  */
 
-function requireCoercibleToString(value) {
-  return ToString(requireObjectCoercible(value));
-}
+var require_coercible_to_string_x_esm_requireCoercibleToString = function requireCoercibleToString(value) {
+  return to_string_x_esm(require_object_coercible_x_esm(value));
+};
+
+/* harmony default export */ var require_coercible_to_string_x_esm = (require_coercible_to_string_x_esm_requireCoercibleToString);
 
 
 // CONCATENATED MODULE: ./node_modules/white-space-x/dist/white-space-x.esm.js
@@ -900,7 +902,7 @@ var replace = EMPTY_STRING.replace;
  */
 
 function trimLeft2016(string) {
-  return replace.call(requireCoercibleToString(string), reLeft2016, EMPTY_STRING);
+  return replace.call(require_coercible_to_string_x_esm(string), reLeft2016, EMPTY_STRING);
 }
 /**
  * This method removes whitespace from the left end of a string. (ES2018).
@@ -910,9 +912,11 @@ function trimLeft2016(string) {
  * @returns {string} The left trimmed string.
  */
 
-function trimLeft2018(string) {
-  return replace.call(requireCoercibleToString(string), reLeft, EMPTY_STRING);
-}
+var trim_left_x_esm_trimLeft2018 = function trimLeft2018(string) {
+  return replace.call(require_coercible_to_string_x_esm(string), reLeft, EMPTY_STRING);
+};
+
+/* harmony default export */ var trim_left_x_esm = (trim_left_x_esm_trimLeft2018);
 
 
 // CONCATENATED MODULE: ./node_modules/trim-right-x/dist/trim-right-x.esm.js
@@ -932,7 +936,7 @@ var trim_right_x_esm_replace = trim_right_x_esm_EMPTY_STRING.replace;
  */
 
 function trimRight2016(string) {
-  return trim_right_x_esm_replace.call(requireCoercibleToString(string), reRight2016, trim_right_x_esm_EMPTY_STRING);
+  return trim_right_x_esm_replace.call(require_coercible_to_string_x_esm(string), reRight2016, trim_right_x_esm_EMPTY_STRING);
 }
 /**
  * This method removes whitespace from the right end of a string. (ES2018).
@@ -942,9 +946,11 @@ function trimRight2016(string) {
  * @returns {string} The right trimmed string.
  */
 
-function trimRight2018(string) {
-  return trim_right_x_esm_replace.call(requireCoercibleToString(string), reRight2018, trim_right_x_esm_EMPTY_STRING);
-}
+var trim_right_x_esm_trimRight2018 = function trimRight2018(string) {
+  return trim_right_x_esm_replace.call(require_coercible_to_string_x_esm(string), reRight2018, trim_right_x_esm_EMPTY_STRING);
+};
+
+/* harmony default export */ var trim_right_x_esm = (trim_right_x_esm_trimRight2018);
 
 
 // CONCATENATED MODULE: ./node_modules/trim-x/dist/trim-x.esm.js
@@ -971,9 +977,11 @@ function trim2016(string) {
  * @returns {string} The trimmed string.
  */
 
-function trim2018(string) {
-  return trimLeft2018(trimRight2018(string));
-}
+var trim_x_esm_trim2018 = function trim2018(string) {
+  return trim_left_x_esm(trim_right_x_esm(string));
+};
+
+/* harmony default export */ var trim_x_esm = (trim_x_esm_trim2018);
 
 
 // CONCATENATED MODULE: ./node_modules/normalize-space-x/dist/normalize-space-x.esm.js
@@ -1006,9 +1014,11 @@ function normalizeSpace2016(string) {
  * @throws {TypeError} If string is null or undefined or not coercible.
  */
 
-function normalizeSpace2018(string) {
-  return normalize_space_x_esm_replace.call(trim2018(string), reNormalize2018, SPACE);
-}
+var normalize_space_x_esm_normalizeSpace2018 = function normalizeSpace2018(string) {
+  return normalize_space_x_esm_replace.call(trim_x_esm(string), reNormalize2018, SPACE);
+};
+
+/* harmony default export */ var normalize_space_x_esm = (normalize_space_x_esm_normalizeSpace2018);
 
 
 // CONCATENATED MODULE: ./node_modules/replace-comments-x/dist/replace-comments-x.esm.js
@@ -1027,9 +1037,11 @@ var replace_comments_x_esm_replace = replace_comments_x_esm_EMPTY_STRING.replace
  * @returns {string} The new string with the comments replaced.
  */
 
-function replaceComments(string, replacement) {
-  return replace_comments_x_esm_replace.call(requireCoercibleToString(string), STRIP_COMMENTS, arguments.length > 1 ? ToString(replacement) : replace_comments_x_esm_EMPTY_STRING);
-}
+var replace_comments_x_esm_replaceComments = function replaceComments(string, replacement) {
+  return replace_comments_x_esm_replace.call(require_coercible_to_string_x_esm(string), STRIP_COMMENTS, arguments.length > 1 ? to_string_x_esm(replacement) : replace_comments_x_esm_EMPTY_STRING);
+};
+
+/* harmony default export */ var replace_comments_x_esm = (replace_comments_x_esm_replaceComments);
 
 
 // CONCATENATED MODULE: ./node_modules/is-function-x/dist/is-function-x.esm.js
@@ -1044,27 +1056,28 @@ function is_function_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !
 
 
 
-
+var FunctionCtr = attempt_x_esm.constructor;
+var castBoolean = true.constructor;
 var is_function_x_esm_SPACE = ' ';
-var fToString = Function.prototype.toString;
+var fToString = attempt_x_esm.toString;
 var funcTag = '[object Function]';
 var genTag = '[object GeneratorFunction]';
 var asyncTag = '[object AsyncFunction]';
 var ctrRx = /^class /;
 var test = ctrRx.test;
-var hasNativeClass = attempt(function () {
+var hasNativeClass = attempt_x_esm(function () {
   is_function_x_esm_newArrowCheck(this, is_function_x_esm_this);
 
-  /* eslint-disable-next-line no-new-func */
-  return Function('"use strict"; return class My {};')();
+  /* eslint-disable-next-line babel/new-cap */
+  return FunctionCtr('"use strict"; return class My {};')();
 }.bind(undefined)).threw === false;
 
 var testClassstring = function _testClassstring(value) {
-  return test.call(ctrRx, normalizeSpace2018(replaceComments(fToString.call(value), is_function_x_esm_SPACE)));
+  return test.call(ctrRx, normalize_space_x_esm(replace_comments_x_esm(fToString.call(value), is_function_x_esm_SPACE)));
 };
 
 var isES6ClassFn = function isES6ClassFunc(value) {
-  var result = attempt(testClassstring, value);
+  var result = attempt_x_esm(testClassstring, value);
   return result.threw === false && result.value;
 };
 /**
@@ -1083,7 +1096,7 @@ var tryFuncToString = function funcToString(value, allowClass) {
     return false;
   }
 
-  return attempt.call(value, fToString).threw === false;
+  return attempt_x_esm.call(value, fToString).threw === false;
 };
 /**
  * Checks if `value` is classified as a `Function` object.
@@ -1095,22 +1108,24 @@ var tryFuncToString = function funcToString(value, allowClass) {
  */
 
 
-function isFunction(value, allowClass) {
+var is_function_x_esm_isFunction = function isFunction(value, allowClass) {
   if (is_primitive_default()(value)) {
     return false;
   }
 
   if (has_to_string_tag_x_esm) {
-    return tryFuncToString(value, toBoolean(allowClass));
+    return tryFuncToString(value, to_boolean_x_esm(allowClass));
   }
 
-  if (hasNativeClass && isFalsey(allowClass) && isES6ClassFn(value)) {
+  if (hasNativeClass && castBoolean(allowClass) === false && isES6ClassFn(value)) {
     return false;
   }
 
-  var strTag = toStringTag(value);
+  var strTag = to_string_tag_x_esm(value);
   return strTag === funcTag || strTag === genTag || strTag === asyncTag;
-}
+};
+
+/* harmony default export */ var is_function_x_esm = (is_function_x_esm_isFunction);
 
 
 // CONCATENATED MODULE: ./node_modules/to-primitive-x/dist/to-primitive-x.esm.js
@@ -1151,7 +1166,7 @@ var orderLength = 2;
  */
 
 var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  requireObjectCoercible(ordinary);
+  require_object_coercible_x_esm(ordinary);
 
   if (typeof hint !== 'string' || hint !== NUMBER && hint !== STRING) {
     throw new TypeError('hint must be "string" or "number"');
@@ -1164,7 +1179,7 @@ var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
   for (var i = ZERO; i < orderLength; i += ONE) {
     method = ordinary[methodNames[i]];
 
-    if (isFunction(method)) {
+    if (is_function_x_esm(method)) {
       result = method.call(ordinary);
 
       if (is_primitive_default()(result)) {
@@ -1185,8 +1200,8 @@ var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
 var getMethod = function _getMethod(object, property) {
   var func = object[property];
 
-  if (isNil(func) === false) {
-    if (isFunction(func) === false) {
+  if (is_nil_x_esm(func) === false) {
+    if (is_function_x_esm(func) === false) {
       throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
     }
 
@@ -1255,7 +1270,7 @@ var to_primitive_x_esm_getExoticToPrim = function getExoticToPrim(value) {
  */
 
 
-function toPrimitive(input, preferredType) {
+var to_primitive_x_esm_toPrimitive = function toPrimitive(input, preferredType) {
   if (is_primitive_default()(input)) {
     return input;
   }
@@ -1275,7 +1290,9 @@ function toPrimitive(input, preferredType) {
 
   var newHint = hint === DEFAULT && (is_date_object_default()(input) || is_symbol_default()(input)) ? STRING : hint;
   return ordinaryToPrimitive(input, newHint === DEFAULT ? NUMBER : newHint);
-}
+};
+
+/* harmony default export */ var to_primitive_x_esm = (to_primitive_x_esm_toPrimitive);
 
 
 // CONCATENATED MODULE: ./node_modules/to-property-key-x/dist/to-property-key-x.esm.js
@@ -1292,10 +1309,28 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
  * @returns {string|Symbol} The converted argument.
  */
 
-function toPropertyKey(argument) {
-  var key = toPrimitive(argument, String);
-  return has_symbol_support_x_esm && _typeof(key) === 'symbol' ? key : ToString(key);
-}
+var to_property_key_x_esm_toPropertyKey = function toPropertyKey(argument) {
+  var key = to_primitive_x_esm(argument, String);
+  return has_symbol_support_x_esm && _typeof(key) === 'symbol' ? key : to_string_x_esm(key);
+};
+
+/* harmony default export */ var to_property_key_x_esm = (to_property_key_x_esm_toPropertyKey);
+
+
+// CONCATENATED MODULE: ./node_modules/is-falsey-x/dist/is-falsey-x.esm.js
+
+/**
+ * This method tests if a given value is falsey.
+ *
+ * @param {*} [value] - The value to test.
+ * @returns {boolean} `true` if the value is falsey: otherwise `false`.
+ */
+
+var is_falsey_x_esm_isFalsey = function isFalsey(value) {
+  return !to_boolean_x_esm(value);
+};
+
+/* harmony default export */ var is_falsey_x_esm = (is_falsey_x_esm_isFalsey);
 
 
 // CONCATENATED MODULE: ./node_modules/has-own-property-x/dist/has-own-property-x.esm.js
@@ -1313,9 +1348,11 @@ var hop = {}.hasOwnProperty;
  * @returns {boolean} `true` if the property is set on `object`, else `false`.
  */
 
-function has_own_property_x_esm_hasOwnProperty(object, property) {
-  return hop.call(toObject(object), toPropertyKey(property));
-}
+var has_own_property_x_esm_hasOwnProperty = function hasOwnProperty(object, property) {
+  return hop.call(to_object_x_esm(object), to_property_key_x_esm(property));
+};
+
+/* harmony default export */ var has_own_property_x_esm = (has_own_property_x_esm_hasOwnProperty);
 
 
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
@@ -1342,9 +1379,11 @@ var to_string_symbols_supported_x_esm_castString = ''.constructor;
  * @returns {string} The converted value.
  */
 
-function toStringSymbolsSupported(value) {
+var toStringSymbolsSupported = function toStringSymbolsSupported(value) {
   return isSymbolFn && isSymbolFn(value) ? pToString.call(value) : to_string_symbols_supported_x_esm_castString(value);
-}
+};
+
+/* harmony default export */ var to_string_symbols_supported_x_esm = (toStringSymbolsSupported);
 
 
 // CONCATENATED MODULE: ./node_modules/nan-x/dist/nan-x.esm.js
@@ -1388,7 +1427,7 @@ var parse_int_x_esm_test = hexRegex.test;
  */
 
 function parseInt2016(string, radix) {
-  var str = trimLeft2016(ToString(string));
+  var str = trimLeft2016(to_string_x_esm(string));
   return nativeParseInt(str, castNumber(radix) || (parse_int_x_esm_test.call(hexRegex, str) ? 16 : 10));
 }
 /**
@@ -1409,15 +1448,17 @@ function parseInt2016(string, radix) {
  *  character cannot be converted to a number, NaN is returned.
  */
 
-function parseInt2018(string, radix) {
-  var str = trimLeft2018(ToString(string));
+var parse_int_x_esm_parseInt2018 = function parseInt2018(string, radix) {
+  var str = trim_left_x_esm(to_string_x_esm(string));
 
   if (charAt.call(str, 0) === "\u180E") {
     return nan_x_esm;
   }
 
   return nativeParseInt(str, castNumber(radix) || (parse_int_x_esm_test.call(hexRegex, str) ? 16 : 10));
-}
+};
+
+/* harmony default export */ var parse_int_x_esm = (parse_int_x_esm_parseInt2018);
 
 
 // CONCATENATED MODULE: ./node_modules/to-number-x/dist/to-number-x.esm.js
@@ -1477,7 +1518,7 @@ var isInvalidHexLiteral = function _isInvalidHexLiteral(value) {
 
 
 function toNumber2016(argument) {
-  var value = toPrimitive(argument, Number);
+  var value = to_primitive_x_esm(argument, Number);
 
   if (is_symbol_default()(value)) {
     throw new TypeError(to_number_x_esm_ERROR_MESSAGE);
@@ -1513,8 +1554,8 @@ function toNumber2016(argument) {
  * @returns {*} The argument converted to a number.
  */
 
-function toNumber2018(argument) {
-  var value = toPrimitive(argument, to_number_x_esm_castNumber);
+var to_number_x_esm_toNumber2018 = function toNumber2018(argument) {
+  var value = to_primitive_x_esm(argument, to_number_x_esm_castNumber);
 
   if (is_symbol_default()(value)) {
     throw new TypeError(to_number_x_esm_ERROR_MESSAGE);
@@ -1522,18 +1563,18 @@ function toNumber2018(argument) {
 
   if (typeof value === 'string') {
     if (isBinary(value)) {
-      return toNumber2018(parseInt2018(pStrSlice.call(value, testCharsCount), binaryRadix));
+      return toNumber2018(parse_int_x_esm(pStrSlice.call(value, testCharsCount), binaryRadix));
     }
 
     if (isOctal(value)) {
-      return toNumber2018(parseInt2018(pStrSlice.call(value, testCharsCount), octalRadix));
+      return toNumber2018(parse_int_x_esm(pStrSlice.call(value, testCharsCount), octalRadix));
     }
 
     if (hasNonWS2018(value) || isInvalidHexLiteral(value)) {
       return nan_x_esm;
     }
 
-    var trimmed = trim2018(value);
+    var trimmed = trim_x_esm(value);
 
     if (trimmed !== value) {
       return toNumber2018(trimmed);
@@ -1541,7 +1582,9 @@ function toNumber2018(argument) {
   }
 
   return to_number_x_esm_castNumber(value);
-}
+};
+
+/* harmony default export */ var to_number_x_esm = (to_number_x_esm_toNumber2018);
 
 
 // CONCATENATED MODULE: ./node_modules/is-nan-x/dist/is-nan-x.esm.js
@@ -1553,10 +1596,12 @@ function toNumber2018(argument) {
  * @returns {boolean} `true` if the given value is NaN and its type is Number;
  *  otherwise, `false`.
  */
-function is_nan_x_esm_isNaN(value) {
+var is_nan_x_esm_isNaN = function isNaN(value) {
   /* eslint-disable-next-line no-self-compare */
   return value !== value;
-}
+};
+
+/* harmony default export */ var is_nan_x_esm = (is_nan_x_esm_isNaN);
 
 
 // CONCATENATED MODULE: ./node_modules/infinity-x/dist/infinity-x.esm.js
@@ -1578,9 +1623,11 @@ function is_nan_x_esm_isNaN(value) {
  * @returns {boolean} A Boolean indicating whether or not the given value is a finite number.
  */
 
-function is_finite_x_esm_isFinite(number) {
-  return typeof number === 'number' && is_nan_x_esm_isNaN(number) === false && number !== infinity_x_esm && number !== -infinity_x_esm;
-}
+var is_finite_x_esm_isFinite = function isFinite(number) {
+  return typeof number === 'number' && is_nan_x_esm(number) === false && number !== infinity_x_esm && number !== -infinity_x_esm;
+};
+
+/* harmony default export */ var is_finite_x_esm = (is_finite_x_esm_isFinite);
 
 
 // CONCATENATED MODULE: ./node_modules/math-sign-x/dist/math-sign-x.esm.js
@@ -1599,7 +1646,7 @@ function is_finite_x_esm_isFinite(number) {
 function sign2016(x) {
   var n = toNumber2016(x);
 
-  if (n === 0 || is_nan_x_esm_isNaN(n)) {
+  if (n === 0 || is_nan_x_esm(n)) {
     return n;
   }
 
@@ -1615,15 +1662,17 @@ function sign2016(x) {
  * return 1, -1, 0 or -0 respectively. Otherwise, NaN is returned.
  */
 
-function sign2018(x) {
-  var n = toNumber2018(x);
+var math_sign_x_esm_sign2018 = function sign2018(x) {
+  var n = to_number_x_esm(x);
 
-  if (n === 0 || is_nan_x_esm_isNaN(n)) {
+  if (n === 0 || is_nan_x_esm(n)) {
     return n;
   }
 
   return n > 0 ? 1 : -1;
-}
+};
+
+/* harmony default export */ var math_sign_x_esm = (math_sign_x_esm_sign2018);
 
 
 // CONCATENATED MODULE: ./node_modules/to-integer-x/dist/to-integer-x.esm.js
@@ -1643,11 +1692,11 @@ var abs = Math.abs,
 function toInteger2016(value) {
   var number = toNumber2016(value);
 
-  if (is_nan_x_esm_isNaN(number)) {
+  if (is_nan_x_esm(number)) {
     return 0;
   }
 
-  if (number === 0 || is_finite_x_esm_isFinite(number) === false) {
+  if (number === 0 || is_finite_x_esm(number) === false) {
     return number;
   }
 
@@ -1660,22 +1709,26 @@ function toInteger2016(value) {
  * @returns {number} Returns the converted integer.
  */
 
-function toInteger2018(value) {
-  var number = toNumber2018(value);
+var to_integer_x_esm_toInteger2018 = function toInteger2018(value) {
+  var number = to_number_x_esm(value);
 
-  if (is_nan_x_esm_isNaN(number)) {
+  if (is_nan_x_esm(number)) {
     return 0;
   }
 
-  if (number === 0 || is_finite_x_esm_isFinite(number) === false) {
+  if (number === 0 || is_finite_x_esm(number) === false) {
     return number;
   }
 
-  return sign2018(number) * floor(abs(number));
-}
+  return math_sign_x_esm(number) * floor(abs(number));
+};
+
+/* harmony default export */ var to_integer_x_esm = (to_integer_x_esm_toInteger2018);
 
 
 // CONCATENATED MODULE: ./node_modules/math-clamp-x/dist/math-clamp-x.esm.js
+ // eslint-disable jsdoc/check-param-names
+// noinspection JSCommentMatchesSignature
 
 /**
  * This method clamp a number to min and max limits inclusive.
@@ -1686,9 +1739,10 @@ function toInteger2018(value) {
  * @throws {RangeError} If min > max.
  * @returns {number} The clamped number.
  */
+// eslint-enable jsdoc/check-param-names
 
-function clamp(value) {
-  var number = toNumber2018(value);
+var math_clamp_x_esm_clamp = function clamp(value) {
+  var number = to_number_x_esm(value);
   var argsLength = arguments.length;
 
   if (argsLength < 2) {
@@ -1697,7 +1751,7 @@ function clamp(value) {
   /* eslint-disable-next-line prefer-rest-params */
 
 
-  var min = toNumber2018(arguments[1]);
+  var min = to_number_x_esm(arguments[1]);
   var max;
 
   if (argsLength < 3) {
@@ -1705,7 +1759,7 @@ function clamp(value) {
     min = 0;
   } else {
     /* eslint-disable-next-line prefer-rest-params */
-    max = toNumber2018(arguments[2]);
+    max = to_number_x_esm(arguments[2]);
   }
 
   if (min > max) {
@@ -1721,7 +1775,9 @@ function clamp(value) {
   }
 
   return number;
-}
+};
+
+/* harmony default export */ var math_clamp_x_esm = (math_clamp_x_esm_clamp);
 
 
 // EXTERNAL MODULE: ./node_modules/max-safe-integer/index.js
@@ -1748,21 +1804,23 @@ var rxTest = reIsUint.test;
  * zero based index within bounds.
  */
 
-function isIndex(value, length) {
-  var string = toStringSymbolsSupported(value);
+var is_index_x_esm_isIndex = function isIndex(value, length) {
+  var string = to_string_symbols_supported_x_esm(value);
 
   if (rxTest.call(reIsUint, string) === false) {
     return false;
   }
 
-  var number = toNumber2018(string);
+  var number = to_number_x_esm(string);
 
   if (arguments.length > 1) {
-    return number < clamp(toInteger2018(length), max_safe_integer_default.a);
+    return number < math_clamp_x_esm(to_integer_x_esm(length), max_safe_integer_default.a);
   }
 
   return number < max_safe_integer_default.a;
-}
+};
+
+/* harmony default export */ var is_index_x_esm = (is_index_x_esm_isIndex);
 
 
 // CONCATENATED MODULE: ./node_modules/property-is-enumerable-x/dist/property-is-enumerable-x.esm.js
@@ -1781,9 +1839,11 @@ var propIsEnumerable = {}.propertyIsEnumerable;
  *  enumerable.
  */
 
-function propertyIsEnumerable(object, property) {
-  return propIsEnumerable.call(toObject(object), toPropertyKey(property));
-}
+var property_is_enumerable_x_esm_propertyIsEnumerable = function propertyIsEnumerable(object, property) {
+  return propIsEnumerable.call(to_object_x_esm(object), to_property_key_x_esm(property));
+};
+
+/* harmony default export */ var property_is_enumerable_x_esm = (property_is_enumerable_x_esm_propertyIsEnumerable);
 
 
 // CONCATENATED MODULE: ./dist/object-get-own-property-descriptor-x.esm.js
@@ -1806,8 +1866,8 @@ var getOPDFallback2; // ES5 15.2.3.3
 // http://es5.github.com/#x15.2.3.3
 
 var object_get_own_property_descriptor_x_esm_doesGOPDWork = function doesGOPDWork(object, prop) {
-  object[toPropertyKey(prop)] = 0;
-  var testResult = attempt(nativeGOPD, object, prop);
+  object[to_property_key_x_esm(prop)] = 0;
+  var testResult = attempt_x_esm(nativeGOPD, object, prop);
   return testResult.threw === false && testResult.value.value === 0;
 }; // check whether getOwnPropertyDescriptor works if it's given. Otherwise, shim partially.
 
@@ -1829,14 +1889,14 @@ if (nativeGOPD) {
   var getOPDWorksOnDom = doc ? object_get_own_property_descriptor_x_esm_doesGOPDWork(doc.createElement('div'), 'sentinel') : true;
 
   if (getOPDWorksOnDom) {
-    var res = attempt(nativeGOPD, object_get_own_property_descriptor_x_esm_castObject('abc'), 1);
+    var res = attempt_x_esm(nativeGOPD, object_get_own_property_descriptor_x_esm_castObject('abc'), 1);
     var worksWithStr = res.threw === false && res.value && res.value.value === 'b';
 
     if (worksWithStr) {
       var getOPDWorksOnObject = object_get_own_property_descriptor_x_esm_doesGOPDWork({}, 'sentinel');
 
       if (getOPDWorksOnObject) {
-        var worksWithPrim = attempt(nativeGOPD, 42, 'name').threw === false;
+        var worksWithPrim = attempt_x_esm(nativeGOPD, 42, 'name').threw === false;
         /* eslint-disable-next-line compat/compat */
 
         var worksWithObjSym = has_symbol_support_x_esm && object_get_own_property_descriptor_x_esm_doesGOPDWork({}, object_get_own_property_descriptor_x_esm_castObject(Symbol('')));
@@ -1846,16 +1906,16 @@ if (nativeGOPD) {
             $getOwnPropertyDescriptor = nativeGOPD;
           } else {
             $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
-              return nativeGOPD(toObject(object), property);
+              return nativeGOPD(to_object_x_esm(object), property);
             };
           }
         } else if (worksWithPrim) {
           $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
-            return nativeGOPD(object, toPropertyKey(property));
+            return nativeGOPD(object, to_property_key_x_esm(property));
           };
         } else {
           $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
-            return nativeGOPD(toObject(object), toPropertyKey(property));
+            return nativeGOPD(to_object_x_esm(object), to_property_key_x_esm(property));
           };
         }
       } else {
@@ -1867,12 +1927,12 @@ if (nativeGOPD) {
   }
 }
 
-if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
+if (is_falsey_x_esm($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
   var prototypeOfObject = object_get_own_property_descriptor_x_esm_castObject.prototype; // If JS engine supports accessors creating shortcuts.
 
   var lookupGetter;
   var lookupSetter;
-  var supportsAccessors = has_own_property_x_esm_hasOwnProperty(prototypeOfObject, '__defineGetter__');
+  var supportsAccessors = has_own_property_x_esm(prototypeOfObject, '__defineGetter__');
 
   if (supportsAccessors) {
     /* eslint-disable-next-line no-underscore-dangle */
@@ -1891,12 +1951,12 @@ if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
   }
 
   $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
-    var obj = toObject(object);
-    var propKey = toPropertyKey(property);
+    var obj = to_object_x_esm(object);
+    var propKey = to_property_key_x_esm(property);
     var result; // make a valiant attempt to use the real getOwnPropertyDescriptor for I8's DOM elements.
 
     if (getOPDFallback1) {
-      result = attempt.call(object_get_own_property_descriptor_x_esm_castObject, getOPDFallback1, obj, propKey);
+      result = attempt_x_esm.call(object_get_own_property_descriptor_x_esm_castObject, getOPDFallback1, obj, propKey);
 
       if (result.threw === false) {
         return result.value;
@@ -1904,10 +1964,10 @@ if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
 
     }
 
-    var isStringIndex = is_string_default()(obj) && isIndex(propKey, obj.length);
+    var isStringIndex = is_string_default()(obj) && is_index_x_esm(propKey, obj.length);
 
     if (getOPDFallback2 && isStringIndex === false) {
-      result = attempt.call(object_get_own_property_descriptor_x_esm_castObject, getOPDFallback2, obj, propKey);
+      result = attempt_x_esm.call(object_get_own_property_descriptor_x_esm_castObject, getOPDFallback2, obj, propKey);
 
       if (result.threw === false) {
         return result.value;
@@ -1919,7 +1979,7 @@ if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
 
     var descriptor = void 0; // If object does not owns property return undefined immediately.
 
-    if (isStringIndex === false && has_own_property_x_esm_hasOwnProperty(obj, propKey) === false) {
+    if (isStringIndex === false && has_own_property_x_esm(obj, propKey) === false) {
       return descriptor;
     } // If object has a property then it's for sure `configurable`, and
     // probably `enumerable`. Detect enumerability though.
@@ -1927,7 +1987,7 @@ if (isFalsey($getOwnPropertyDescriptor) || getOPDFallback1 || getOPDFallback2) {
 
     descriptor = {
       configurable: is_primitive_default()(object) === false && isStringIndex === false,
-      enumerable: propertyIsEnumerable(obj, propKey)
+      enumerable: property_is_enumerable_x_esm(obj, propKey)
     }; // If JS engine supports accessor properties then property may be a
     // getter or setter.
 
