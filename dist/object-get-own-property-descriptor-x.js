@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-18T18:59:27.530Z",
+  "date": "2019-07-19T22:08:04.733Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
-  "hash": "5afd59dd403e9f1d85a3",
+  "hash": "1ef52dd63c4b979e3174",
   "license": "MIT",
-  "version": "4.0.8"
+  "version": "4.0.9"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1319,7 +1319,7 @@ var hop = {}.hasOwnProperty;
  *
  * @param {!object} object - The object to test.
  * @throws {TypeError} If object is null or undefined.
- * @param {string|Symbol} property - The name or Symbol of the property to test.
+ * @param {string|number|Symbol} property - The name or Symbol of the property to test.
  * @returns {boolean} `true` if the property is set on `object`, else `false`.
  */
 
