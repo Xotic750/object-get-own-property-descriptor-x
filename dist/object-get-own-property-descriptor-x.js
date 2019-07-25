@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-24T16:43:14.975Z",
+  "date": "2019-07-25T22:20:29.232Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
   "hash": "1663c40d4363f31998e0",
   "license": "MIT",
-  "version": "4.0.13"
+  "version": "4.0.14"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
