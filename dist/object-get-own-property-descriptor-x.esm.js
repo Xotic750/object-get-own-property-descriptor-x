@@ -7,13 +7,12 @@ import isPrimitive from 'is-primitive';
 import isString from 'is-string';
 import isIndex from 'is-index-x';
 import propertyIsEnumerable from 'property-is-enumerable-x';
-/** @type {ObjectConstructor} */
-
+import toBoolean from 'to-boolean-x';
+var EMPTY_STRING = '';
+var charAt = EMPTY_STRING.charAt;
 var castObject = {}.constructor;
-/** @type {BooleanConstructor} */
-
-var castBoolean = true.constructor;
-var nativeGOPD = typeof castObject.getOwnPropertyDescriptor === 'function' && castObject.getOwnPropertyDescriptor;
+var ngopd = castObject.getOwnPropertyDescriptor;
+var nativeGOPD = typeof ngopd === 'function' && ngopd;
 var getOPDFallback1;
 var getOPDFallback2; // ES5 15.2.3.3
 // http://es5.github.com/#x15.2.3.3
@@ -52,7 +51,7 @@ if (nativeGOPD) {
         var worksWithPrim = attempt(nativeGOPD, 42, 'name').threw === false;
         /* eslint-disable-next-line compat/compat */
 
-        var worksWithObjSym = hasSymbolSupport && doesGOPDWork({}, castObject(Symbol('')));
+        var worksWithObjSym = hasSymbolSupport && doesGOPDWork({}, castObject(Symbol(EMPTY_STRING)));
 
         if (worksWithObjSym) {
           if (worksWithPrim) {
@@ -80,7 +79,7 @@ if (nativeGOPD) {
   }
 }
 
-if (castBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDFallback2) {
+if (toBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDFallback2) {
   var prototypeOfObject = castObject.prototype; // If JS engine supports accessors creating shortcuts.
 
   var lookupGetter;
@@ -190,7 +189,7 @@ if (castBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOP
 
 
     if (isStringIndex) {
-      descriptor.value = obj.charAt(propKey);
+      descriptor.value = charAt.call(obj, propKey);
       descriptor.writable = false;
     } else {
       descriptor.value = obj[propKey];

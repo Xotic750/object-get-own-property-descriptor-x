@@ -57,6 +57,7 @@
     "is-primitive": "^3.0.1",
     "is-string": "^1.0.4",
     "property-is-enumerable-x": "^2.0.18",
+    "to-boolean-x": "^2.0.24",
     "to-object-x": "^2.0.20",
     "to-property-key-x": "^3.0.19"
   },
