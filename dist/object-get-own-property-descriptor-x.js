@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-29T19:32:15.962Z",
+  "date": "2019-07-31T16:13:18.321Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
