@@ -10,8 +10,8 @@ import propertyIsEnumerable from 'property-is-enumerable-x';
 import toBoolean from 'to-boolean-x';
 var EMPTY_STRING = '';
 var charAt = EMPTY_STRING.charAt;
-var castObject = {}.constructor;
-var ngopd = castObject.getOwnPropertyDescriptor;
+var ObjectCtr = {}.constructor;
+var ngopd = ObjectCtr.getOwnPropertyDescriptor;
 var nativeGOPD = typeof ngopd === 'function' && ngopd;
 var getOPDFallback1;
 var getOPDFallback2; // ES5 15.2.3.3
@@ -41,7 +41,7 @@ if (nativeGOPD) {
   var getOPDWorksOnDom = doc ? doesGOPDWork(doc.createElement('div'), 'sentinel') : true;
 
   if (getOPDWorksOnDom) {
-    var res = attempt(nativeGOPD, castObject('abc'), 1);
+    var res = attempt(nativeGOPD, toObject('abc'), 1);
     var worksWithStr = res.threw === false && res.value && res.value.value === 'b';
 
     if (worksWithStr) {
@@ -51,7 +51,7 @@ if (nativeGOPD) {
         var worksWithPrim = attempt(nativeGOPD, 42, 'name').threw === false;
         /* eslint-disable-next-line compat/compat */
 
-        var worksWithObjSym = hasSymbolSupport && doesGOPDWork({}, castObject(Symbol(EMPTY_STRING)));
+        var worksWithObjSym = hasSymbolSupport && doesGOPDWork({}, toObject(Symbol(EMPTY_STRING)));
 
         if (worksWithObjSym) {
           if (worksWithPrim) {
@@ -80,7 +80,7 @@ if (nativeGOPD) {
 }
 
 if (toBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDFallback2) {
-  var prototypeOfObject = castObject.prototype; // If JS engine supports accessors creating shortcuts.
+  var prototypeOfObject = ObjectCtr.prototype; // If JS engine supports accessors creating shortcuts.
 
   var lookupGetter;
   var lookupSetter;
@@ -108,7 +108,7 @@ if (toBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDF
     var result; // make a valiant attempt to use the real getOwnPropertyDescriptor for I8's DOM elements.
 
     if (getOPDFallback1) {
-      result = attempt.call(castObject, getOPDFallback1, obj, propKey);
+      result = attempt.call(toObject, getOPDFallback1, obj, propKey);
 
       if (result.threw === false) {
         return result.value;
@@ -119,7 +119,7 @@ if (toBoolean($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDF
     var isStringIndex = isString(obj) && isIndex(propKey, obj.length);
 
     if (getOPDFallback2 && isStringIndex === false) {
-      result = attempt.call(castObject, getOPDFallback2, obj, propKey);
+      result = attempt.call(toObject, getOPDFallback2, obj, propKey);
 
       if (result.threw === false) {
         return result.value;
