@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-15T18:27:02.362Z",
+  "date": "2019-08-15T18:57:59.942Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
-  "hash": "5271d9e545cc8ea170b6",
+  "hash": "f2c26bcd7f02017d6546",
   "license": "MIT",
   "version": "4.1.0"
 }
@@ -1317,6 +1317,22 @@ var has_own_property_x_esm_hasOwnProperty = function hasOwnProperty(object, prop
 /* harmony default export */ var has_own_property_x_esm = (has_own_property_x_esm_hasOwnProperty);
 
 
+// CONCATENATED MODULE: ./node_modules/is-primitive-x/dist/is-primitive-x.esm.js
+function is_primitive_x_esm_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { is_primitive_x_esm_typeof = function _typeof(obj) { return typeof obj; }; } else { is_primitive_x_esm_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return is_primitive_x_esm_typeof(obj); }
+
+/**
+ * Returns true if the value is a primitive.
+ *
+ * @param {*} [val] - The value to test.
+ * @returns {boolean} True if a primitive, otherwise false..
+ */
+var isPrimitive = function isPrimitive(val) {
+  return is_primitive_x_esm_typeof(val) === 'object' ? val === null : typeof val !== 'function';
+};
+
+/* harmony default export */ var is_primitive_x_esm = (isPrimitive);
+
+
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
 var is_string = __webpack_require__(3);
 var is_string_default = /*#__PURE__*/__webpack_require__.n(is_string);
@@ -1875,7 +1891,7 @@ if (to_boolean_x_esm($getOwnPropertyDescriptor) === false || getOPDFallback1 || 
 
 
     descriptor = {
-      configurable: is_primitive_default()(object) === false && isStringIndex === false,
+      configurable: is_primitive_x_esm(object) === false && isStringIndex === false,
       enumerable: property_is_enumerable_x_esm(obj, propKey)
     }; // If JS engine supports accessor properties then property may be a
     // getter or setter.

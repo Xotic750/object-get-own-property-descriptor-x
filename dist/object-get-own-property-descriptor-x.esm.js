@@ -3,7 +3,7 @@ import toPropertyKey from 'to-property-key-x';
 import attempt from 'attempt-x';
 import hasSymbolSupport from 'has-symbol-support-x';
 import owns from 'has-own-property-x';
-import isPrimitive from 'is-primitive';
+import isPrimitive from 'is-primitive-x';
 import isString from 'is-string';
 import isIndex from 'is-index-x';
 import propertyIsEnumerable from 'property-is-enumerable-x';

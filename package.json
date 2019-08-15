@@ -55,7 +55,7 @@
     "has-own-property-x": "^4.1.0",
     "has-symbol-support-x": "^2.1.0",
     "is-index-x": "^2.1.0",
-    "is-primitive": "^3.0.1",
+    "is-primitive-x": "^1.0.0",
     "is-string": "^1.0.4",
     "property-is-enumerable-x": "^2.1.0",
     "to-boolean-x": "^2.1.0",
