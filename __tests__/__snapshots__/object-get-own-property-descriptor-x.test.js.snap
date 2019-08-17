@@ -1,5 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getOwnPropertyDescriptor should throw error for \`null\` or \`undefined\` 1`] = `"Cannot convert undefined or null to object"`;
+exports[`getOwnPropertyDescriptor 0 should throw error for \`null\` or \`undefined\` 1`] = `"Cannot call method on undefined"`;
 
-exports[`getOwnPropertyDescriptor should throw error for \`null\` or \`undefined\` 2`] = `"Cannot convert undefined or null to object"`;
+exports[`getOwnPropertyDescriptor 0 should throw error for \`null\` or \`undefined\` 2`] = `"Cannot call method on null"`;
+
+exports[`getOwnPropertyDescriptor 1 should throw error for \`null\` or \`undefined\` 1`] = `"Cannot convert undefined or null to object"`;
+
+exports[`getOwnPropertyDescriptor 1 should throw error for \`null\` or \`undefined\` 2`] = `"Cannot convert undefined or null to object"`;

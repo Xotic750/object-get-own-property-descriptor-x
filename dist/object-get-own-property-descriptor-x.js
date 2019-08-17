@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-16T23:25:15.979Z",
+  "date": "2019-08-17T14:15:00.020Z",
   "describe": "",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "file": "object-get-own-property-descriptor-x.js",
-  "hash": "f2c26bcd7f02017d6546",
+  "hash": "ac8a0e8f5993bed674d5",
   "license": "MIT",
   "version": "4.1.0"
 }
@@ -223,33 +223,6 @@ module.exports = function isPrimitive(val) {
 "use strict";
 
 
-var getDay = Date.prototype.getDay;
-var tryDateObject = function tryDateObject(value) {
-	try {
-		getDay.call(value);
-		return true;
-	} catch (e) {
-		return false;
-	}
-};
-
-var toStr = Object.prototype.toString;
-var dateClass = '[object Date]';
-var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
-
-module.exports = function isDateObject(value) {
-	if (typeof value !== 'object' || value === null) { return false; }
-	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
-};
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var strValue = String.prototype.valueOf;
 var tryStringObject = function tryStringObject(value) {
 	try {
@@ -267,6 +240,33 @@ module.exports = function isString(value) {
 	if (typeof value === 'string') { return true; }
 	if (typeof value !== 'object') { return false; }
 	return hasToStringTag ? tryStringObject(value) : toStr.call(value) === strClass;
+};
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var getDay = Date.prototype.getDay;
+var tryDateObject = function tryDateObject(value) {
+	try {
+		getDay.call(value);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
+
+var toStr = Object.prototype.toString;
+var dateClass = '[object Date]';
+var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
+
+module.exports = function isDateObject(value) {
+	if (typeof value !== 'object' || value === null) { return false; }
+	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
 };
 
 
@@ -494,7 +494,7 @@ var is_primitive = __webpack_require__(1);
 var is_primitive_default = /*#__PURE__*/__webpack_require__.n(is_primitive);
 
 // EXTERNAL MODULE: ./node_modules/is-date-object/index.js
-var is_date_object = __webpack_require__(2);
+var is_date_object = __webpack_require__(3);
 var is_date_object_default = /*#__PURE__*/__webpack_require__.n(is_date_object);
 
 // CONCATENATED MODULE: ./node_modules/to-boolean-x/dist/to-boolean-x.esm.js
@@ -1334,7 +1334,7 @@ var isPrimitive = function isPrimitive(val) {
 
 
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
-var is_string = __webpack_require__(3);
+var is_string = __webpack_require__(2);
 var is_string_default = /*#__PURE__*/__webpack_require__.n(is_string);
 
 // CONCATENATED MODULE: ./node_modules/to-string-symbols-supported-x/dist/to-string-symbols-supported-x.esm.js
@@ -1750,7 +1750,281 @@ var property_is_enumerable_x_esm_propertyIsEnumerable = function propertyIsEnume
 /* harmony default export */ var property_is_enumerable_x_esm = (property_is_enumerable_x_esm_propertyIsEnumerable);
 
 
+// CONCATENATED MODULE: ./node_modules/util-pusher-x/dist/util-pusher-x.esm.js
+
+
+var util_pusher_x_esm_EMPTY_STRING = '';
+var split = util_pusher_x_esm_EMPTY_STRING.split;
+var splitter = [util_pusher_x_esm_EMPTY_STRING];
+
+var util_pusher_x_esm_getIterable = function getIterable(arrayLike) {
+  // noinspection JSUnresolvedFunction
+  return is_string_default()(arrayLike) ? split.apply(arrayLike, splitter) : arrayLike;
+}; // eslint-disable jsdoc/no-undefined-types
+// noinspection JSCommentMatchesSignature
+
+/**
+ * This pushes or concatenates into a new or existing array.
+ *
+ * @param {Array} arrayLike - The source.
+ * @param {number} [from=0] - The from source index.
+ * @param {Array} [target=[]] - The target array.
+ * @returns {*} The target array.
+ */
+// eslint-enable jsdoc/no-undefined-types
+
+
+var util_pusher_x_esm_pusher = function pusher(arrayLike, from) {
+  /* eslint-disable-next-line prefer-rest-params */
+  var target = arguments.length > 2 ? arguments[2] : [];
+
+  if (typeof arrayLike !== 'string' && is_primitive_x_esm(arrayLike)) {
+    return target;
+  }
+
+  var iterable = util_pusher_x_esm_getIterable(arrayLike);
+  var length = iterable.length;
+
+  for (var i = from || 0; i < length; i += 1) {
+    target[target.length] = arrayLike[i];
+  }
+
+  return target;
+};
+
+/* harmony default export */ var util_pusher_x_esm = (util_pusher_x_esm_pusher);
+
+
+// CONCATENATED MODULE: ./node_modules/simple-bind-x/dist/simple-bind-x.esm.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var simple_bind_x_esm_ERROR_MESSAGE = 'bind called on incompatible ';
+var simple_bind_x_esm_object = {};
+var ObjectCtr = simple_bind_x_esm_object.constructor;
+var simple_bind_x_esm_toStringTag = simple_bind_x_esm_object.toString;
+var funcType = '[object Function]';
+var simple_bind_x_esm_ZERO = 0;
+var argsOffset = 2;
+
+var getMax = function getMax(a, b) {
+  return a >= b ? a : b;
+};
+
+var simple_bind_x_esm_assertIsFunction = function assertIsFunction(value) {
+  if (typeof value !== 'function' && simple_bind_x_esm_toStringTag.apply(value) !== funcType) {
+    throw new TypeError(simple_bind_x_esm_ERROR_MESSAGE + value);
+  }
+};
+
+var boundFns = [function zero(binder) {
+  return function boundFn() {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments));
+  };
+}, function one(binder, boundLength) {
+  return function boundFn(a) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a]));
+  };
+}, function two(binder, boundLength) {
+  return function boundFn(a, b) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b]));
+  };
+}, function three(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c]));
+  };
+}, function four(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d]));
+  };
+}, function five(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e]));
+  };
+}, function six(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e, f) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e, f]));
+  };
+}, function seven(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e, f, g) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e, f, g]));
+  };
+}, function eight(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e, f, g, h) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e, f, g, h]));
+  };
+}];
+
+var getBoundFn = function getBoundFn(args) {
+  var _args = _slicedToArray(args, 3),
+      binder = _args[0],
+      target = _args[1],
+      bindArgs = _args[2];
+
+  var boundLength = getMax(simple_bind_x_esm_ZERO, target.length - getMax(simple_bind_x_esm_ZERO, bindArgs.length - argsOffset));
+  var fn = boundFns[boundLength];
+  var boundFn = fn ? fn(binder, boundLength) : boundFns[simple_bind_x_esm_ZERO](binder);
+
+  if (target.prototype) {
+    /* eslint-disable-next-line lodash/prefer-noop */
+    var Empty = function Empty() {};
+
+    Empty.prototype = target.prototype;
+    boundFn.prototype = new Empty();
+    Empty.prototype = null;
+  }
+
+  return boundFn;
+};
+
+var getResult = function getResult(target, boundArgs) {
+  /* eslint-disable-next-line babel/no-invalid-this */
+  var result = target.apply(this, boundArgs);
+  /* eslint-disable-next-line babel/no-invalid-this,babel/new-cap */
+
+  return ObjectCtr(result) === result ? result : this;
+}; // eslint-disable jsdoc/check-param-names
+// noinspection JSCommentMatchesSignature
+
+/**
+ * The bind() method creates a new function that, when called, has its this
+ * keyword set to the provided value, with a given sequence of arguments
+ * preceding any provided when the new function is called.
+ *
+ * @param {Function} target - The target function.
+ * @param {*} [thisArg] - The value to be passed as the this parameter to the target
+ *  function when the bound function is called. The value is ignored if the
+ *  bound function is constructed using the new operator.
+ * @param {...*} [args] - Arguments to prepend to arguments provided to the bound
+ *  function when invoking the target function.
+ * @throws {TypeError} If target is not a function.
+ * @returns {Function} The bound function.
+ */
+// eslint-enable jsdoc/check-param-names
+
+
+var simple_bind_x_esm_bind = function bind(target, thisArg) {
+  simple_bind_x_esm_assertIsFunction(target);
+  /* eslint-disable-next-line prefer-rest-params */
+
+  var bindArgs = arguments;
+  var bound;
+
+  var binder = function binder() {
+    /* eslint-disable-next-line prefer-rest-params */
+    var boundArgs = util_pusher_x_esm(arguments, simple_bind_x_esm_ZERO, util_pusher_x_esm(bindArgs, argsOffset));
+    /* eslint-disable-next-line babel/no-invalid-this */
+
+    return this instanceof bound ? getResult.apply(this, [target, boundArgs]) : target.apply(thisArg, boundArgs);
+  };
+
+  bound = getBoundFn([binder, target, bindArgs]);
+  return bound;
+};
+
+/* harmony default export */ var simple_bind_x_esm = (simple_bind_x_esm_bind);
+
+
+// CONCATENATED MODULE: ./node_modules/simple-call-x/dist/simple-call-x.esm.js
+
+
+var $TypeError = TypeError;
+var nativeApply = simple_bind_x_esm.apply,
+    nativeCall = simple_bind_x_esm.call;
+var $apply = simple_bind_x_esm(nativeCall, nativeApply);
+var simple_call_x_esm_toStringTag = simple_bind_x_esm(nativeApply, {}.toString);
+var simple_call_x_esm_ERROR_MESSAGE = ' is not a function';
+var simple_call_x_esm_funcType = '[object Function]';
+
+var simple_call_x_esm_assertIsFunction = function assertIsFunction(value) {
+  if (typeof value !== 'function' && simple_call_x_esm_toStringTag(value) !== simple_call_x_esm_funcType) {
+    throw new $TypeError(value + simple_call_x_esm_ERROR_MESSAGE);
+  }
+
+  return value;
+}; // eslint-disable jsdoc/check-param-names
+// noinspection JSCommentMatchesSignature
+
+/**
+ * The abstract operation Call is used to call the [[Call]] internal method of a function object.
+ *
+ * @function call
+ * @param {Function} F - The target function.
+ * @param {*} [V] - The context.
+ * @param {Array} [args] - Argument to call the function with.
+ * @throws {TypeError} If target is not a function.
+ * @returns {*} The the result of invoking the function.
+ * @see https://www.ecma-international.org/ecma-262/6.0/#sec-call
+ */
+// eslint-enable jsdoc/check-param-names
+
+
+var simple_call_x_esm_call = function call(F, V) {
+  /* eslint-disable-next-line prefer-rest-params */
+  return $apply(simple_call_x_esm_assertIsFunction(F), V, util_pusher_x_esm(arguments[2]));
+};
+
+/* harmony default export */ var simple_call_x_esm = (simple_call_x_esm_call);
+
+
+// CONCATENATED MODULE: ./node_modules/simple-methodize-x/dist/simple-methodize-x.esm.js
+
+
+var simple_methodize_x_esm_toStringTag = {}.toString;
+var simple_methodize_x_esm_ERROR_MESSAGE = 'methodize called on incompatible ';
+var simple_methodize_x_esm_funcType = '[object Function]';
+
+var simple_methodize_x_esm_assertIsFunction = function assertIsFunction(value) {
+  if (typeof value !== 'function' && simple_call_x_esm(simple_methodize_x_esm_toStringTag, value) !== simple_methodize_x_esm_funcType) {
+    throw new TypeError(simple_methodize_x_esm_ERROR_MESSAGE + value);
+  }
+
+  return value;
+};
+/**
+ * Methodize a prototype method. Compliant to 8 arguments.
+ *
+ * @param {Function} prototypeMethod - The prototype method to methodize.
+ * @throws {TypeError} If target is not a function.
+ * @returns {Function} The static method.
+ */
+
+
+var simple_methodize_x_esm_methodize = function methodize(prototypeMethod) {
+  simple_methodize_x_esm_assertIsFunction(prototypeMethod);
+  return function methodized() {
+    /* eslint-disable-next-line prefer-rest-params */
+    return simple_call_x_esm(prototypeMethod, arguments[0], util_pusher_x_esm(arguments, 1));
+  };
+};
+
+/* harmony default export */ var simple_methodize_x_esm = (simple_methodize_x_esm_methodize);
+
+
 // CONCATENATED MODULE: ./dist/object-get-own-property-descriptor-x.esm.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "implementation", function() { return implementation; });
+
 
 
 
@@ -1762,9 +2036,9 @@ var property_is_enumerable_x_esm_propertyIsEnumerable = function propertyIsEnume
 
 
 var object_get_own_property_descriptor_x_esm_EMPTY_STRING = '';
-var object_get_own_property_descriptor_x_esm_charAt = object_get_own_property_descriptor_x_esm_EMPTY_STRING.charAt;
-var ObjectCtr = {}.constructor;
-var ngopd = ObjectCtr.getOwnPropertyDescriptor;
+var object_get_own_property_descriptor_x_esm_charAt = simple_methodize_x_esm(object_get_own_property_descriptor_x_esm_EMPTY_STRING.charAt);
+var object_get_own_property_descriptor_x_esm_ObjectCtr = {}.constructor;
+var ngopd = object_get_own_property_descriptor_x_esm_ObjectCtr.getOwnPropertyDescriptor;
 var nativeGOPD = typeof ngopd === 'function' && ngopd;
 var getOPDFallback1;
 var getOPDFallback2; // ES5 15.2.3.3
@@ -1774,8 +2048,117 @@ var object_get_own_property_descriptor_x_esm_doesGOPDWork = function doesGOPDWor
   object[to_property_key_x_esm(prop)] = 0;
   var testResult = attempt_x_esm(nativeGOPD, object, prop);
   return testResult.threw === false && testResult.value.value === 0;
-}; // check whether getOwnPropertyDescriptor works if it's given. Otherwise, shim partially.
+};
 
+var prototypeOfObject = object_get_own_property_descriptor_x_esm_ObjectCtr.prototype; // If JS engine supports accessors creating shortcuts.
+
+var supportsAccessors = has_own_property_x_esm(prototypeOfObject, '__defineGetter__');
+/* eslint-disable-next-line no-underscore-dangle */
+
+var lookupGetter = supportsAccessors && simple_methodize_x_esm(prototypeOfObject.__lookupGetter__);
+/* eslint-disable-next-line no-underscore-dangle */
+
+var lookupSetter = supportsAccessors && simple_methodize_x_esm(prototypeOfObject.__lookupSetter__);
+var implementation = function getOwnPropertyDescriptor(object, property) {
+  var obj = to_object_x_esm(object);
+  var propKey = to_property_key_x_esm(property);
+  var result; // make a valiant attempt to use the real getOwnPropertyDescriptor for I8's DOM elements.
+
+  if (getOPDFallback1) {
+    result = attempt_x_esm(function attemptee() {
+      return getOPDFallback1(to_object_x_esm(obj), propKey);
+    });
+
+    if (result.threw === false) {
+      return result.value;
+    } // try the shim if the real one doesn't work
+
+  }
+
+  var isStringIndex = is_string_default()(obj) && is_index_x_esm(propKey, obj.length);
+
+  if (getOPDFallback2 && isStringIndex === false) {
+    result = attempt_x_esm(function attemptee() {
+      return getOPDFallback2(to_object_x_esm(obj), propKey);
+    });
+
+    if (result.threw === false) {
+      return result.value;
+    } // try the shim if the real one doesn't work
+
+  }
+  /* eslint-disable-next-line no-void */
+
+
+  var descriptor = void 0; // If object does not owns property return undefined immediately.
+
+  if (isStringIndex === false && has_own_property_x_esm(obj, propKey) === false) {
+    return descriptor;
+  } // If object has a property then it's for sure `configurable`, and
+  // probably `enumerable`. Detect enumerability though.
+
+
+  descriptor = {
+    configurable: is_primitive_x_esm(object) === false && isStringIndex === false,
+    enumerable: property_is_enumerable_x_esm(obj, propKey)
+  }; // If JS engine supports accessor properties then property may be a
+  // getter or setter.
+
+  if (supportsAccessors) {
+    // Unfortunately `__lookupGetter__` will return a getter even
+    // if object has own non getter property along with a same named
+    // inherited getter. To avoid misbehavior we temporary remove
+    // `__proto__` so that `__lookupGetter__` will return getter only
+    // if it's owned by an object.
+
+    /* eslint-disable-next-line no-proto */
+    var prototype = obj.__proto__;
+    var notPrototypeOfObject = obj !== prototypeOfObject; // avoid recursion problem, breaking in Opera Mini when
+    // Object.getOwnPropertyDescriptor(Object.prototype, 'toString')
+    // or any other Object.prototype accessor
+
+    if (notPrototypeOfObject) {
+      /* eslint-disable-next-line no-proto */
+      obj.__proto__ = prototypeOfObject;
+    }
+
+    var getter = lookupGetter(obj, propKey);
+    var setter = lookupSetter(obj, propKey);
+
+    if (notPrototypeOfObject) {
+      // Once we have getter and setter we can put values back.
+
+      /* eslint-disable-next-line no-proto */
+      obj.__proto__ = prototype;
+    }
+
+    if (getter || setter) {
+      if (getter) {
+        descriptor.get = getter;
+      }
+
+      if (setter) {
+        descriptor.set = setter;
+      } // If it was accessor property we're done and return here
+      // in order to avoid adding `value` to the descriptor.
+
+
+      return descriptor;
+    }
+  } // If we got this far we know that object has an own property that is
+  // not an accessor so we set it as a value and return descriptor.
+
+
+  if (isStringIndex) {
+    descriptor.value = object_get_own_property_descriptor_x_esm_charAt(obj, propKey);
+    descriptor.writable = false;
+  } else {
+    descriptor.value = obj[propKey];
+    descriptor.writable = true;
+  }
+
+  return descriptor;
+};
 /**
  * This method returns a property descriptor for an own property (that is,
  * one directly present on an object and not in the object's prototype chain)
@@ -1786,8 +2169,7 @@ var object_get_own_property_descriptor_x_esm_doesGOPDWork = function doesGOPDWor
  * @returns {object} A property descriptor of the given property if it exists on the object, undefined otherwise.
  */
 
-
-var $getOwnPropertyDescriptor;
+var $getOwnPropertyDescriptor; // check whether getOwnPropertyDescriptor works if it's given. Otherwise, shim partially.
 
 if (nativeGOPD) {
   var doc = typeof document !== 'undefined' && document;
@@ -1833,124 +2215,7 @@ if (nativeGOPD) {
 }
 
 if (to_boolean_x_esm($getOwnPropertyDescriptor) === false || getOPDFallback1 || getOPDFallback2) {
-  var prototypeOfObject = ObjectCtr.prototype; // If JS engine supports accessors creating shortcuts.
-
-  var lookupGetter;
-  var lookupSetter;
-  var supportsAccessors = has_own_property_x_esm(prototypeOfObject, '__defineGetter__');
-
-  if (supportsAccessors) {
-    /* eslint-disable-next-line no-underscore-dangle */
-    var lg = prototypeOfObject.__lookupGetter__;
-    /* eslint-disable-next-line no-underscore-dangle */
-
-    var ls = prototypeOfObject.__lookupSetter__;
-
-    lookupGetter = function $lookupGetter(object, property) {
-      return lg.call(object, property);
-    };
-
-    lookupSetter = function $lookupSetter(object, property) {
-      return ls.call(object, property);
-    };
-  }
-
-  $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(object, property) {
-    var obj = to_object_x_esm(object);
-    var propKey = to_property_key_x_esm(property);
-    var result; // make a valiant attempt to use the real getOwnPropertyDescriptor for I8's DOM elements.
-
-    if (getOPDFallback1) {
-      result = attempt_x_esm.call(to_object_x_esm, getOPDFallback1, obj, propKey);
-
-      if (result.threw === false) {
-        return result.value;
-      } // try the shim if the real one doesn't work
-
-    }
-
-    var isStringIndex = is_string_default()(obj) && is_index_x_esm(propKey, obj.length);
-
-    if (getOPDFallback2 && isStringIndex === false) {
-      result = attempt_x_esm.call(to_object_x_esm, getOPDFallback2, obj, propKey);
-
-      if (result.threw === false) {
-        return result.value;
-      } // try the shim if the real one doesn't work
-
-    }
-    /* eslint-disable-next-line no-void */
-
-
-    var descriptor = void 0; // If object does not owns property return undefined immediately.
-
-    if (isStringIndex === false && has_own_property_x_esm(obj, propKey) === false) {
-      return descriptor;
-    } // If object has a property then it's for sure `configurable`, and
-    // probably `enumerable`. Detect enumerability though.
-
-
-    descriptor = {
-      configurable: is_primitive_x_esm(object) === false && isStringIndex === false,
-      enumerable: property_is_enumerable_x_esm(obj, propKey)
-    }; // If JS engine supports accessor properties then property may be a
-    // getter or setter.
-
-    if (supportsAccessors) {
-      // Unfortunately `__lookupGetter__` will return a getter even
-      // if object has own non getter property along with a same named
-      // inherited getter. To avoid misbehavior we temporary remove
-      // `__proto__` so that `__lookupGetter__` will return getter only
-      // if it's owned by an object.
-
-      /* eslint-disable-next-line no-proto */
-      var prototype = obj.__proto__;
-      var notPrototypeOfObject = obj !== prototypeOfObject; // avoid recursion problem, breaking in Opera Mini when
-      // Object.getOwnPropertyDescriptor(Object.prototype, 'toString')
-      // or any other Object.prototype accessor
-
-      if (notPrototypeOfObject) {
-        /* eslint-disable-next-line no-proto */
-        obj.__proto__ = prototypeOfObject;
-      }
-
-      var getter = lookupGetter(obj, propKey);
-      var setter = lookupSetter(obj, propKey);
-
-      if (notPrototypeOfObject) {
-        // Once we have getter and setter we can put values back.
-
-        /* eslint-disable-next-line no-proto */
-        obj.__proto__ = prototype;
-      }
-
-      if (getter || setter) {
-        if (getter) {
-          descriptor.get = getter;
-        }
-
-        if (setter) {
-          descriptor.set = setter;
-        } // If it was accessor property we're done and return here
-        // in order to avoid adding `value` to the descriptor.
-
-
-        return descriptor;
-      }
-    } // If we got this far we know that object has an own property that is
-    // not an accessor so we set it as a value and return descriptor.
-
-
-    if (isStringIndex) {
-      descriptor.value = object_get_own_property_descriptor_x_esm_charAt.call(obj, propKey);
-      descriptor.writable = false;
-    } else {
-      descriptor.value = obj[propKey];
-      descriptor.writable = true;
-    }
-
-    return descriptor;
-  };
+  $getOwnPropertyDescriptor = implementation;
 }
 
 var gOPS = $getOwnPropertyDescriptor;
