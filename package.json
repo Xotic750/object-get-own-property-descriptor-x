@@ -1,6 +1,6 @@
 {
   "name": "object-get-own-property-descriptor-x",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Sham for ES6 Object.getOwnPropertyDescriptor",
   "homepage": "https://github.com/Xotic750/object-get-own-property-descriptor-x",
   "author": {
@@ -51,17 +51,17 @@
     "url": "https://github.com/Xotic750/object-get-own-property-descriptor-x/issues"
   },
   "dependencies": {
-    "attempt-x": "^2.1.0",
-    "has-own-property-x": "^4.1.0",
-    "has-symbol-support-x": "^2.1.0",
-    "is-index-x": "^2.1.0",
+    "attempt-x": "^2.1.1",
+    "has-own-property-x": "^4.1.1",
+    "has-symbol-support-x": "^2.1.1",
+    "is-index-x": "^2.1.1",
     "is-primitive-x": "^1.0.0",
     "is-string": "^1.0.4",
-    "property-is-enumerable-x": "^2.1.0",
-    "simple-methodize-x": "^1.0.2",
+    "property-is-enumerable-x": "^2.1.1",
+    "simple-methodize-x": "^1.0.3",
     "to-boolean-x": "^2.1.0",
     "to-object-x": "^2.2.0",
-    "to-property-key-x": "^3.1.0"
+    "to-property-key-x": "^3.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
